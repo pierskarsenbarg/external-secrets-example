@@ -58,34 +58,6 @@ return await Deployment.RunAsync(async () =>
         }
     }, new() { Provider = provider });
 
-    var awsSecret = new Pulumi.Kubernetes.ApiExtensions.CustomResource("aws-external-secret", new ExternalSecretArgs(apiVersion: "external-secrets.io/v1", kind: "ExternalSecret")
-    {
-        Metadata = new ObjectMetaArgs
-        {
-            Namespace = appNamespace.Metadata.Apply(m => m.Name)
-        },
-        Spec = new InputMap<object>
-        {
-            ["refreshInterval"] = "15s",
-            ["secretStoreRef"] = new Dictionary<string, object>
-            {
-                ["kind"] = clusterSecretStoreKind,
-                ["name"] = awsSecretStore
-            },
-            ["dataFrom"] = new[]
-            {
-                new Dictionary<string, object>
-                {
-                    ["extract"] = new Dictionary<string, object>
-                    {
-                        ["conversionStrategy"] = "Default",
-                        ["key"] = "aws-app"
-                    }
-                }
-            }
-        }
-    }, new() { Provider = provider });
-
     var azureSecret = new Pulumi.Kubernetes.ApiExtensions.CustomResource("azure-external-secret", new ExternalSecretArgs(apiVersion: "external-secrets.io/v1", kind: "ExternalSecret")
     {
         Metadata = new ObjectMetaArgs
