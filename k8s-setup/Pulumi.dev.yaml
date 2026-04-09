@@ -1,5 +1,2 @@
-environment:
-  - cloud-access/pulumi-cloud
-  - demos/kubeconfig
 config:
   eso-version: v2.2.0
