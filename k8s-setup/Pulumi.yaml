@@ -1,0 +1,7 @@
+name: eso-demo-k8s-setup
+description: Set up ESO operator on pre-built k8s cluster
+runtime: dotnet
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: csharp

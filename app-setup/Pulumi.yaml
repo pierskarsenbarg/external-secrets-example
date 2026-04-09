@@ -1,0 +1,7 @@
+name: eso-demo-app-setup-csharp
+description: Set up app to use external secrets provider
+runtime: dotnet
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: csharp
